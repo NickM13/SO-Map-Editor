@@ -69,13 +69,19 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <IncludePath>$(ProjectDir)include\devil\include;$(ProjectDir)include\glfw\include;$(ProjectDir)include\freealut\include;$(ProjectDir)include\freetype\include;$(ProjectDir)include\glew\include;$(ProjectDir)include\OpenAL\include;$(ProjectDir)src\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(ProjectDir)include\devil\lib;$(ProjectDir)include\glew\lib;$(ProjectDir)include\glfw\lib;$(ProjectDir)include\freealut\lib;$(ProjectDir)include\freetype\lib;$(ProjectDir)include\OpenAL\lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
     </ClCompile>
+    <Link>
+      <AdditionalDependencies>opengl32.lib;glu32.lib;glew32.lib;glfw3.lib;DevIL.lib;ILU.lib;ILUT.lib;OpenAL32.lib;alut.lib;freetyped.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -111,6 +117,116 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <None Include="alut.dll" />
+    <None Include="DevIL.dll" />
+    <None Include="glew32.dll" />
+    <None Include="glfw3.dll" />
+    <None Include="ILU.dll" />
+    <None Include="ILUT.dll" />
+    <None Include="msvcr120.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\include\application\Application.h" />
+    <ClInclude Include="src\include\application\editor\Editor.h" />
+    <ClInclude Include="src\include\application\editor\platformer\command\Command.h" />
+    <ClInclude Include="src\include\application\editor\platformer\map\Map.h" />
+    <ClInclude Include="src\include\application\editor\platformer\Platformer.h" />
+    <ClInclude Include="src\include\application\gfx\font\Font.h" />
+    <ClInclude Include="src\include\application\gfx\gui\button\Button.h" />
+    <ClInclude Include="src\include\application\gfx\gui\button\ButtonRadio.h" />
+    <ClInclude Include="src\include\application\gfx\gui\button\ButtonToggle.h" />
+    <ClInclude Include="src\include\application\gfx\gui\Component.h" />
+    <ClInclude Include="src\include\application\gfx\gui\container\BackPanel.h" />
+    <ClInclude Include="src\include\application\gfx\gui\container\ColorPanel.h" />
+    <ClInclude Include="src\include\application\gfx\gui\container\Container.h" />
+    <ClInclude Include="src\include\application\gfx\gui\container\ContainerPanel.h" />
+    <ClInclude Include="src\include\application\gfx\gui\container\Panel.h" />
+    <ClInclude Include="src\include\application\gfx\gui\field\DataField.h" />
+    <ClInclude Include="src\include\application\gfx\gui\field\Text.h" />
+    <ClInclude Include="src\include\application\gfx\gui\field\TextField.h" />
+    <ClInclude Include="src\include\application\gfx\gui\frequency\Graph.h" />
+    <ClInclude Include="src\include\application\gfx\gui\frequency\Slider.h" />
+    <ClInclude Include="src\include\application\gfx\gui\icon\Icon.h" />
+    <ClInclude Include="src\include\application\gfx\gui\tileselecter\TileSelecter.h" />
+    <ClInclude Include="src\include\application\gfx\LGui.h" />
+    <ClInclude Include="src\include\application\gfx\LTexture.h" />
+    <ClInclude Include="src\include\application\gfx\mesh\VoxelMesh.h" />
+    <ClInclude Include="src\include\application\gfx\model\load\NvmFormat.h" />
+    <ClInclude Include="src\include\application\gfx\model\load\VoxFormat.h" />
+    <ClInclude Include="src\include\application\gfx\model\VoxelMatrix.h" />
+    <ClInclude Include="src\include\application\gfx\model\VoxelModel.h" />
+    <ClInclude Include="src\include\application\gfx\sprite\SpriteAnimation.h" />
+    <ClInclude Include="src\include\application\gfx\tileset\Tileset.h" />
+    <ClInclude Include="src\include\application\sfx\LOpenAL.h" />
+    <ClInclude Include="src\include\application\sfx\Sound.h" />
+    <ClInclude Include="src\include\application\utils\FileExt.h" />
+    <ClInclude Include="src\include\application\utils\global\event\GKey.h" />
+    <ClInclude Include="src\include\application\utils\global\event\GMouse.h" />
+    <ClInclude Include="src\include\application\utils\global\GGameState.h" />
+    <ClInclude Include="src\include\application\utils\global\GScreen.h" />
+    <ClInclude Include="src\include\application\utils\LOpenGL.h" />
+    <ClInclude Include="src\include\application\utils\Math.h" />
+    <ClInclude Include="src\include\application\utils\Singleton.h" />
+    <ClInclude Include="src\include\application\utils\Utilities.h" />
+    <ClInclude Include="src\include\application\utils\variable\datatype\Box.h" />
+    <ClInclude Include="src\include\application\utils\variable\datatype\Color.h" />
+    <ClInclude Include="src\include\application\utils\variable\datatype\Macros.h" />
+    <ClInclude Include="src\include\application\utils\variable\datatype\Rectangle.h" />
+    <ClInclude Include="src\include\application\utils\variable\datatype\Texture.h" />
+    <ClInclude Include="src\include\application\utils\variable\datatype\Vector2.h" />
+    <ClInclude Include="src\include\application\utils\variable\datatype\Vector3.h" />
+    <ClInclude Include="src\include\application\utils\variable\datatype\Vector4.h" />
+    <ClInclude Include="src\include\application\utils\variable\datatype\Voxel.h" />
+    <ClInclude Include="src\include\application\utils\variable\manager\ColorManager.h" />
+    <ClInclude Include="src\include\application\utils\variable\manager\Manager.h" />
+    <ClInclude Include="src\include\application\utils\variable\manager\ScissorManager.h" />
+    <ClInclude Include="src\include\application\utils\variable\manager\TextureManager.h" />
+    <ClInclude Include="src\include\application\utils\variable\manager\VoxelManager.h" />
+    <ClInclude Include="src\include\application\utils\variable\manager\VoxelModelManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\src\application\Application.cpp" />
+    <ClCompile Include="src\src\application\editor\Editor.cpp" />
+    <ClCompile Include="src\src\application\editor\platformer\command\Command.cpp" />
+    <ClCompile Include="src\src\application\editor\platformer\map\Map.cpp" />
+    <ClCompile Include="src\src\application\editor\platformer\Platformer.cpp" />
+    <ClCompile Include="src\src\application\gfx\font\Font.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\button\Button.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\button\ButtonRadio.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\button\ButtonToggle.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\Component.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\container\ColorPanel.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\container\Container.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\container\ContainerPanel.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\container\Panel.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\field\DataField.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\field\Text.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\field\TextField.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\frequency\Graph.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\frequency\Slider.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\icon\Icon.cpp" />
+    <ClCompile Include="src\src\application\gfx\gui\tileselecter\TileSelecter.cpp" />
+    <ClCompile Include="src\src\application\gfx\LTexture.cpp" />
+    <ClCompile Include="src\src\application\gfx\mesh\VoxelMesh.cpp" />
+    <ClCompile Include="src\src\application\gfx\model\load\NvmFormat.cpp" />
+    <ClCompile Include="src\src\application\gfx\model\load\VoxFormat.cpp" />
+    <ClCompile Include="src\src\application\gfx\model\VoxelMatrix.cpp" />
+    <ClCompile Include="src\src\application\gfx\model\VoxelModel.cpp" />
+    <ClCompile Include="src\src\application\gfx\sprite\SpriteAnimation.cpp" />
+    <ClCompile Include="src\src\application\sfx\Sound.cpp" />
+    <ClCompile Include="src\src\application\utils\FileExt.cpp" />
+    <ClCompile Include="src\src\application\utils\global\event\GKey.cpp" />
+    <ClCompile Include="src\src\application\utils\global\event\GMouse.cpp" />
+    <ClCompile Include="src\src\application\utils\global\GGameState.cpp" />
+    <ClCompile Include="src\src\application\utils\global\GScreen.cpp" />
+    <ClCompile Include="src\src\application\utils\Math.cpp" />
+    <ClCompile Include="src\src\application\utils\Utilities.cpp" />
+    <ClCompile Include="src\src\application\utils\variable\manager\ColorManager.cpp" />
+    <ClCompile Include="src\src\application\utils\variable\manager\ScissorManager.cpp" />
+    <ClCompile Include="src\src\application\utils\variable\manager\TextureManager.cpp" />
+    <ClCompile Include="src\src\application\utils\variable\manager\VoxelManager.cpp" />
+    <ClCompile Include="src\src\application\utils\variable\manager\VoxelModelManager.cpp" />
+    <ClCompile Include="src\src\Main.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
